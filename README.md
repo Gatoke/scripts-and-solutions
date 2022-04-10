@@ -4,3 +4,9 @@
 ```
 GIT_SSH_COMMAND='ssh -i $HOME/.ssh/id_ed25519 -o IdentitiesOnly=yes -F /dev/null' git push
 ```
+
+2. GIT reset branch to be like remote:
+```
+git fetch origin
+git reset --hard origin/master
+```

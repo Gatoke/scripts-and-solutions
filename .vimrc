@@ -1,32 +1,19 @@
-" Content of VIM configuration file - ~/.vimrc
-" Vim-Plug is required: https://github.com/junegunn/vim-plug
-
-
-" PLUGINS ---------------------------
 call plug#begin('~/.vim/plugged')
+
+Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
-Plug 'junegunn/fzf'
+Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
+Plug 'eslint/eslint'
+Plug 'preservim/nerdtree'
+
 call plug#end()
-" -----------------------------------
 
+:set relativenumber
+:colorscheme gruvbox
+:set background=dark
 
-" VISUALS ---------------------------
-syntax on
-set relativenumber
-set termguicolors
-set background=dark
-colorscheme gruvbox
-" -----------------------------------
-
-
-" FILE EXPLORER ---------------------
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-augroup ProjectDrawer
-	autocmd!
-	autocmd VimEnter * :Vexplore
-augroup END
-" -----------------------------------
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
